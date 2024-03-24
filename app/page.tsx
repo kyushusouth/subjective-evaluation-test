@@ -1,23 +1,26 @@
 import { PrismaClient } from '@prisma/client'
+import dotenv from 'dotenv';
 
+dotenv.config({ path: "../.env" });
+const domainName = process.env.GCS_DOMAIN_NAME
+const bucketName = process.env.GCS_BUCKET_NAME
 const prisma = new PrismaClient()
 
 export default async function Index() {
   const users = await prisma.respondents.findMany()
+  const sampleMetaDataList = await prisma.sampleMetaData.findMany()
+  const urlList = []
+  for (let sampleMetaData of sampleMetaDataList) {
+    urlList.push(domainName + "/" + bucketName + "/" + sampleMetaData.file_path)
+  }
 
   return (
     <div>
-      <h1>Hello World</h1>
-      <ul>
-        {users.map((user, index) => (
-          <li key={index}>
-            {user.id}, {user.name}, {user.password}, {user.sex}, {user.age}
-          </li>
-        ))}
-      </ul>
-      <audio src="https://bqwgexbjtqydlqabfwdy.supabase.co/storage/v1/object/public/wav/abs.wav" controls controlsList="nodownload"></audio>
-      <audio src="https://bqwgexbjtqydlqabfwdy.supabase.co/storage/v1/object/public/wav/generate.wav" controls controlsList="nodownload"></audio>
-      <audio src="https://bqwgexbjtqydlqabfwdy.supabase.co/storage/v1/object/public/wav/gt.wav" controls controlsList="nodownload"></audio>
+      {urlList.map((url, index) => (
+        <div key={index}>
+          <audio src={url} controls controlsList="nodownload"></audio>
+        </div>
+      ))}
     </div>
   )
 }
