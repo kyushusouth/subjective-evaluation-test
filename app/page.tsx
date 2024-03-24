@@ -15,9 +15,9 @@ export default async function Index() {
           </li>
         ))}
       </ul>
-      <audio src="https://bqwgexbjtqydlqabfwdy.supabase.co/storage/v1/object/public/wav/abs.wav" controls controlslist="nodownload"></audio>
-      <audio src="https://bqwgexbjtqydlqabfwdy.supabase.co/storage/v1/object/public/wav/generate.wav" controls controlslist="nodownload"></audio>
-      <audio src="https://bqwgexbjtqydlqabfwdy.supabase.co/storage/v1/object/public/wav/gt.wav" controls controlslist="nodownload"></audio>
+      <audio src="https://bqwgexbjtqydlqabfwdy.supabase.co/storage/v1/object/public/wav/abs.wav" controls controlsList="nodownload"></audio>
+      <audio src="https://bqwgexbjtqydlqabfwdy.supabase.co/storage/v1/object/public/wav/generate.wav" controls controlsList="nodownload"></audio>
+      <audio src="https://bqwgexbjtqydlqabfwdy.supabase.co/storage/v1/object/public/wav/gt.wav" controls controlsList="nodownload"></audio>
     </div>
   )
 }
