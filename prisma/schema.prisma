@@ -1,0 +1,49 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Respondents {
+  id       Int    @id @default(autoincrement())
+  name     String @unique
+  password String @unique
+  sex      String
+  age      Int
+}
+
+model SampleMetaData {
+  id           Int       @id @default(autoincrement())
+  file_path    String    @unique
+  speaker_name String
+  model_name   String
+  sample_name  String
+  kind         String
+  Answers      Answers[]
+}
+
+model NaturalnessItem {
+  id      Int       @id @default(autoincrement())
+  item    String    @unique
+  Answers Answers[]
+}
+
+model IntelligibilityItem {
+  id      Int       @id @default(autoincrement())
+  item    String    @unique
+  Answers Answers[]
+}
+
+model Answers {
+  id                  Int                 @id @default(autoincrement())
+  sample_meta_data    SampleMetaData      @relation(fields: [sample_meta_data_id], references: [id])
+  sample_meta_data_id Int
+  naturalness         NaturalnessItem     @relation(fields: [naturalness_id], references: [id])
+  naturalness_id      Int
+  intelligibility     IntelligibilityItem @relation(fields: [intelligibility_id], references: [id])
+  intelligibility_id  Int
+}
