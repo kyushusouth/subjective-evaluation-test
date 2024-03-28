@@ -14,8 +14,6 @@ export default function Confirm({
 
     const {
         handleSubmit,
-        getValues,
-        formState: { errors },
     } = methods;
 
     const [sendData, setSendData] = useState<SchemaType | null>(null);
