@@ -1,5 +1,7 @@
-import { GeistSans } from "geist/font/sans";
-import "./globals.css";
+// import "@/app/globals.css"
+import { inter } from "@/app/fonts"
+import Link from 'next/link';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -17,11 +19,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={GeistSans.className}>
-      <body className="bg-background text-foreground">
-        <main className="min-h-screen flex flex-col items-center">
-          {children}
-        </main>
+    <html lang="en">
+      <body className={`${inter.className} antialiased`}>
+        <AppRouterCacheProvider>
+          <main className="min-h-screen flex flex-col items-center">
+            <ul>
+              <li>
+                <Link href="/">root</Link>
+              </li>
+              <li>
+                <Link href="/eval">eval</Link>
+              </li>
+            </ul>
+            {children}
+          </main>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );
