@@ -3,7 +3,6 @@
 import { fetchInvoicesPages } from "@/app/lib/data";
 import Pagination from "@/components/pagination";
 import Eval from "@/components/eval"
-import { Button } from "@/components/handlerTest";
 import { fetchFilteredWavFiles } from "@/app/lib/data";
 import React, { useState } from 'react';
 
@@ -22,10 +21,6 @@ export default async function Index({
   return (
     <div>
       <h1>Root Page</h1>
-
-      <div>
-        <Button></Button>
-      </div>
 
       <Eval currentPage={currentPage} data={data} setData={setData}></Eval>
 
