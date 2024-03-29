@@ -1,4 +1,5 @@
 import { handler, config } from "@/auth"
+import type { NextAuthOptions } from "next-auth"
 
 // import NextAuth from "next-auth"
 // import { authOptions } from "@/app/lib/auth";
@@ -35,5 +36,5 @@ import { handler, config } from "@/auth"
 
 // const handler = NextAuth(authOptions);
 
-export const authOptions = config;
+export const authOptions: NextAuthOptions = config;
 export { handler as GET, handler as POST }
