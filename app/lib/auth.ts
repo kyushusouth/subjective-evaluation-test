@@ -1,4 +1,4 @@
-import NextAuth from "next-auth"
+// import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import type { NextAuthOptions } from "next-auth"
 
@@ -28,4 +28,4 @@ export const authOptions = {
     secret: process.env.NEXTAUTH_SECRET,
 } satisfies NextAuthOptions
 
-export const handler = NextAuth(authOptions);
+// export const handler = NextAuth(authOptions);
