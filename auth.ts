@@ -25,7 +25,7 @@ export const config = {
         }),
     ],
     secret: process.env.NEXTAUTH_SECRET,
-    basePath: "/auth",
+    basePath: "auth",
 };
 
 export const handler = NextAuth(config);
