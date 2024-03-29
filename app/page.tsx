@@ -1,7 +1,9 @@
+import LoginButton from "@/components/LoginButton";
+
 export default function Index() {
   return (
     <div>
-      Index
+      <LoginButton></LoginButton>
     </div>
   )
 }
