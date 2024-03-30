@@ -23,7 +23,7 @@
     "dotenv": "^16.4.5",
     "geist": "^1.2.1",
     "next": "latest",
-    "next-auth": "^4.24.7",
+    "next-auth": "^5.0.0-beta.16",
     "postcss": "8.4.33",
     "prisma": "^5.11.0",
     "react": "18.2.0",

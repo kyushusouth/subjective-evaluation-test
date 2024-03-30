@@ -1,5 +1,6 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+import type { NextAuthConfig } from "next-auth"
 
 export const config = {
     providers: [
@@ -25,7 +26,7 @@ export const config = {
         }),
     ],
     secret: process.env.NEXTAUTH_SECRET,
-    basePath: "auth",
-};
+    basePath: "/auth",
+} satisfies NextAuthConfig
 
-export const handler = NextAuth(config);
+export const { handlers, auth, signIn, signOut } = NextAuth(config)
