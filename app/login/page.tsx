@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
 import SubmitButton from "@/app/login/submit-button";
+import Box from "@mui/material/Box";
 
 export default function Login({
   searchParams,
@@ -26,7 +27,11 @@ export default function Login({
   };
 
   return (
-    <div>
+    <Box
+      sx={{
+        my: 10,
+      }}
+    >
       <form className="" action={signIn}>
         <Container
           sx={{
@@ -59,6 +64,6 @@ export default function Login({
           )}
         </Container>
       </form>
-    </div>
+    </Box>
   );
 }
