@@ -24,54 +24,20 @@ export default async function Index() {
   };
 
   return (
-    <div>
-      <Container
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
-        <div>ようこそ {user.id}</div>
+    <Container
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        my: 10,
+      }}
+    >
+      <div>ようこそ {user.id}</div>
 
-        <form action={signOut}>
-          <SubmitButton>ログアウト</SubmitButton>
-        </form>
-      </Container>
-    </div>
+      <form action={signOut}>
+        <SubmitButton>ログアウト</SubmitButton>
+      </form>
+    </Container>
   );
 }
