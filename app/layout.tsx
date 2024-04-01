@@ -1,16 +1,20 @@
-// import "@/app/globals.css"
-import { inter } from "@/app/fonts"
-import Link from 'next/link';
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
+import "@/app/globals.css";
+import { Metadata, Viewport } from "next";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "@/app/theme";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "http://localhost:3000";
 
-export const metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default async function RootLayout({
@@ -20,22 +24,11 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+      <body className="antialiased">
         <AppRouterCacheProvider>
-          <main className="min-h-screen flex flex-col items-center">
-            <ul>
-              <li>
-                <Link href="/">root</Link>
-              </li>
-              <li>
-                <Link href="/eval">eval</Link>
-              </li>
-              <li>
-                <Link href="/login">login</Link>
-              </li>
-            </ul>
-            {children}
-          </main>
+          <ThemeProvider theme={theme}>
+            <div>{children}</div>
+          </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
     </html>
