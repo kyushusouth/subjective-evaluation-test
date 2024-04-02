@@ -1,46 +1,36 @@
 import { unstable_noStore as noStore } from "next/cache";
 import { prisma } from "@/app/lib/prisma";
 
-const ITEMS_PER_PAGE = 10;
+const shuffleArray = (array: object[]) => {
+  const cloneArray = [...array];
+  for (let i = cloneArray.length - 1; i >= 0; i -= 1) {
+    const rand = Math.floor(Math.random() * (i + 1));
+    const tmpStorage = cloneArray[i];
+    cloneArray[i] = cloneArray[rand];
+    cloneArray[rand] = tmpStorage;
+  }
+  return cloneArray;
+};
+
+export async function fetchSexItemList() {
+  noStore();
+  try {
+    const sexItemList = await prisma.sexItem.findMany();
+    return sexItemList;
+  } catch (error) {
+    throw new Error("Failed to fetch all sex items.");
+  }
+}
 
 export async function fetchAllwavFiles() {
   noStore();
   try {
-    const sampleMetaDataList = await prisma.sampleMetaData.findMany();
-    return sampleMetaDataList;
-  } catch (error) {
-    console.error(`Strage Error:${  error}`);
-    throw new Error("Failed to fetch all wav files.");
-  }
-}
-
-export async function fetchInvoicesPages() {
-  noStore();
-  try {
-    const sampleMetaDataList = await prisma.sampleMetaData.findMany();
-    const count = sampleMetaDataList.length;
-    const totalPages = Math.ceil(Number(count) / ITEMS_PER_PAGE);
-    return totalPages;
-  } catch (error) {
-    console.error("Storage Error:", error);
-    throw new Error("Failed to fetch total number of wavfiles.");
-  }
-}
-
-export async function fetchFilteredWavFiles(currentPage: number) {
-  noStore();
-  try {
     const sampleMetaDataList = await prisma.sampleMetaData.findMany({
-      where: {
-        id: {
-          gt: ITEMS_PER_PAGE * currentPage - ITEMS_PER_PAGE,
-          lte: ITEMS_PER_PAGE * currentPage,
-        },
-      },
+      take: 3,
     });
-    return sampleMetaDataList;
+    const sampleMetaDataListShuffled = shuffleArray(sampleMetaDataList);
+    return sampleMetaDataListShuffled;
   } catch (error) {
-    console.error(error);
-    throw new Error("Failed to fetch sampleMetaDataList.");
+    throw new Error("Failed to fetch all wav files.");
   }
 }
