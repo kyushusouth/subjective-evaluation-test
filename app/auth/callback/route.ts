@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { createClient } from "@/utils/supabase/server";
 import { NextResponse } from "next/server";
 
@@ -7,7 +8,7 @@ export async function GET(request: Request) {
   // https://supabase.com/docs/guides/auth/server-side/nextjs
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get("code");
-  const {origin} = requestUrl;
+  const { origin } = requestUrl;
 
   if (code) {
     const supabase = createClient();
@@ -17,24 +18,3 @@ export async function GET(request: Request) {
   // URL to redirect to after sign up process completes
   return NextResponse.redirect(`${origin}/protected`);
 }
-
-// import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
-// import { cookies } from 'next/headers'
-// import { NextResponse } from 'next/server'
-
-// import type { NextRequest } from 'next/server'
-// import type { Database } from '@/lib/database.types'
-
-// export async function GET(request: NextRequest) {
-//   const requestUrl = new URL(request.url)
-//   const code = requestUrl.searchParams.get('code')
-
-//   if (code) {
-//     const cookieStore = cookies()
-//     const supabase = createRouteHandlerClient<Database>({ cookies: () => cookieStore })
-//     await supabase.auth.exchangeCodeForSession(code)
-//   }
-
-//   // URL to redirect to after sign in process completes
-//   return NextResponse.redirect(requestUrl.origin)
-// }
