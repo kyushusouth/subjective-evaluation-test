@@ -14,7 +14,10 @@ export default function Page() {
   const [sampleMetaDataList, setSampleMetaDataList] = useState([]);
   const [domainName, setDomainName] = useState("");
   const [bucketName, setBucketName] = useState("");
-  const numSamplePerPage = 10;
+  const [naturalnessItemList, setNaturalnessItemList] = useState([]);
+  const [intelligibilityItemList, setintelligibilityItemList] = useState([]);
+  const [respondent, setRespondent] = useState();
+  const numSamplePerPage = 3;
   const lastPageNumber = Math.ceil(
     sampleMetaDataList.length / numSamplePerPage,
   );
@@ -68,38 +71,86 @@ export default function Page() {
       }
     };
 
+    const fetchNaturalnessItem = async () => {
+      const res = await fetch("api/naturalnessItem", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "GET",
+      });
+      const data = await res.json();
+      if (!ignore) {
+        setNaturalnessItemList(data);
+      }
+    };
+
+    const fetchIntelligibilityItem = async () => {
+      const res = await fetch("api/intelligibilityItem", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "GET",
+      });
+      const data = await res.json();
+      if (!ignore) {
+        setintelligibilityItemList(data);
+      }
+    };
+
+    const fetchRespondent = async () => {
+      const res = await fetch("api/respondent", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "GET",
+      });
+      const data = await res.json();
+      if (!ignore) {
+        setRespondent(data);
+      }
+    };
+
     fetchSampleMetaData();
     fetchDomainName();
     fetchBucketName();
+    fetchNaturalnessItem();
+    fetchIntelligibilityItem();
+    fetchRespondent();
 
     return () => {
       ignore = true;
     };
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
+
   return (
-    <div>
-      <div>
-        <FormProvider {...methods}>
-          <form>
-            {pageNumber === lastPageNumber + 1 ? (
-              <Confirm onPrev={onPrev} />
-            ) : (
-              <EvalForm
-                onNext={onNext}
-                onPrev={onPrev}
-                sampleMetaDataList={sampleMetaDataList.slice(
-                  10 * (pageNumber - 1),
-                  10 * pageNumber,
-                )}
-                domainName={domainName}
-                bucketName={bucketName}
-                pageNumber={pageNumber}
-              />
+    <FormProvider {...methods}>
+      <form>
+        {pageNumber === lastPageNumber + 1 ? (
+          <Confirm
+            onPrev={onPrev}
+            sampleMetaDataList={sampleMetaDataList}
+            respondent={respondent}
+          />
+        ) : (
+          <EvalForm
+            onNext={onNext}
+            onPrev={onPrev}
+            sampleMetaDataList={sampleMetaDataList.slice(
+              numSamplePerPage * (pageNumber - 1),
+              numSamplePerPage * pageNumber,
             )}
-          </form>
-        </FormProvider>
-      </div>
-    </div>
+            domainName={domainName}
+            bucketName={bucketName}
+            naturalnessItemList={naturalnessItemList}
+            intelligibilityItemList={intelligibilityItemList}
+            pageNumber={pageNumber}
+          />
+        )}
+      </form>
+    </FormProvider>
   );
 }
