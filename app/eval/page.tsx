@@ -5,18 +5,30 @@ import { useForm, FormProvider } from "react-hook-form";
 import EvalForm from "@/app/eval/form";
 import Confirm from "@/app/eval/confirm";
 import { SchemaType } from "@/app/eval/schema";
+import {
+  SampleMetaData,
+  NaturalnessItem,
+  IntelligibilityItem,
+  Respondents,
+} from "@prisma/client";
 
 export default function Page() {
   const methods = useForm<SchemaType>({
     mode: "onBlur",
   });
-  const [pageNumber, setPageNumber] = useState(1);
-  const [sampleMetaDataList, setSampleMetaDataList] = useState([]);
-  const [domainName, setDomainName] = useState("");
-  const [bucketName, setBucketName] = useState("");
-  const [naturalnessItemList, setNaturalnessItemList] = useState([]);
-  const [intelligibilityItemList, setintelligibilityItemList] = useState([]);
-  const [respondent, setRespondent] = useState();
+  const [pageNumber, setPageNumber] = useState<number>(1);
+  const [sampleMetaDataList, setSampleMetaDataList] = useState<
+    SampleMetaData[]
+  >([]);
+  const [domainName, setDomainName] = useState<string>("");
+  const [bucketName, setBucketName] = useState<string>("");
+  const [naturalnessItemList, setNaturalnessItemList] = useState<
+    NaturalnessItem[]
+  >([]);
+  const [intelligibilityItemList, setintelligibilityItemList] = useState<
+    IntelligibilityItem[]
+  >([]);
+  const [respondent, setRespondent] = useState<Respondents | undefined>();
   const numSamplePerPage = 3;
   const lastPageNumber = Math.ceil(
     sampleMetaDataList.length / numSamplePerPage,

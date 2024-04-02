@@ -16,7 +16,7 @@ export default function Confirm({
 }: {
   onPrev: () => void;
   sampleMetaDataList: SampleMetaData[];
-  respondent: Respondents;
+  respondent: Respondents | undefined;
 }) {
   const router = useRouter();
   const methods = useFormContext<SchemaType>();
@@ -53,9 +53,12 @@ export default function Confirm({
     };
 
     if (sendData === null) {
-      console.error("sendData is null.");
-      return;
+      throw new Error("sendData is null.");
     }
+    if (respondent === undefined) {
+      throw new Error("respondent is undefined.");
+    }
+
     const dataList = [];
     for (const sampleMetaData of sampleMetaDataList) {
       const sampleId = Number(sampleMetaData.id);
