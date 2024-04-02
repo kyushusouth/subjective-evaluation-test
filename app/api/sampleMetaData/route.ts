@@ -1,4 +1,5 @@
-import { fetchAllwavFiles, fetchFilteredWavFiles } from "@/app/lib/data";
+/* eslint-disable import/prefer-default-export */
+import { fetchAllwavFiles } from "@/app/lib/data";
 
 export async function GET(request: Request) {
   const sampleMetaDataList = await fetchAllwavFiles();
