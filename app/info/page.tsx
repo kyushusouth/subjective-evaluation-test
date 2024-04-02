@@ -41,7 +41,6 @@ export default async function Info() {
         },
       });
     } catch (error) {
-      console.error(error);
       throw new Error("Failed to submit.");
     }
     redirect("/");
@@ -66,7 +65,7 @@ export default async function Info() {
           <FormControl fullWidth>
             <InputLabel id="sex-label">Age</InputLabel>
             <Select labelId="sex-label" label="sex" name="sex">
-              {sexItemList.map((sexItem, index) => (
+              {sexItemList.map((sexItem) => (
                 <MenuItem key={sexItem.id} value={sexItem.item}>
                   {sexItem.item}
                 </MenuItem>
