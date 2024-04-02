@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable import/prefer-default-export */
 import { prisma } from "@/app/lib/prisma";
 import { createClient } from "@/utils/supabase/server";
