@@ -38,11 +38,7 @@ export default function Form({
 }) {
   const methods = useFormContext<SchemaType>();
 
-  const {
-    register,
-    getValues,
-    formState: { errors },
-  } = methods;
+  const { register, getValues } = methods;
 
   return (
     <Container
@@ -54,7 +50,7 @@ export default function Form({
         my: 10,
       }}
     >
-      {sampleMetaDataList.map((data, index) => {
+      {sampleMetaDataList.map((data) => {
         const sampleId = data.id;
         const sampleUrl = `${domainName}/${bucketName}/${data.file_path}`;
         return (
@@ -89,10 +85,11 @@ export default function Form({
                 <Select
                   labelId={`naturalness_${sampleId}_label`}
                   label={`naturalness_${sampleId}`}
+                  // eslint-disable-next-line react/jsx-props-no-spreading
                   {...register(`naturalness_${sampleId}`)}
                   defaultValue={getValues(`naturalness_${sampleId}`)}
                 >
-                  {naturalnessItemList.map((naturalnessItem, index) => (
+                  {naturalnessItemList.map((naturalnessItem) => (
                     <MenuItem
                       key={naturalnessItem.id}
                       value={naturalnessItem.id}
@@ -109,10 +106,11 @@ export default function Form({
                 <Select
                   labelId={`intelligibility_${sampleId}_label`}
                   label={`intelligibility_${sampleId}`}
+                  // eslint-disable-next-line react/jsx-props-no-spreading
                   {...register(`intelligibility_${sampleId}`)}
                   defaultValue={getValues(`intelligibility_${sampleId}`)}
                 >
-                  {intelligibilityItemList.map((intelligibilityItem, index) => (
+                  {intelligibilityItemList.map((intelligibilityItem) => (
                     <MenuItem
                       key={intelligibilityItem.id}
                       value={intelligibilityItem.id}
