@@ -10,8 +10,8 @@ export default async function Index() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) {
-    return redirect("/login");
+  if (user === null) {
+    redirect("/login");
   }
 
   const signOut = async () => {
@@ -20,7 +20,7 @@ export default async function Index() {
     // eslint-disable-next-line @typescript-eslint/no-shadow
     const supabase = createClient();
     await supabase.auth.signOut();
-    return redirect("/");
+    redirect("/");
   };
 
   return (
