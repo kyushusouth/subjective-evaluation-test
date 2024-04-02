@@ -11,6 +11,9 @@
     "prettier-fix": "prettier . --write",
     "postinstall": "prisma generate"
   },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.4",
@@ -65,8 +68,5 @@
     "eslint-plugin-react": "^7.34.1",
     "prettier": "3.2.5",
     "secretlint": "^8.1.2"
-  },
-  "prisma": {
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }
