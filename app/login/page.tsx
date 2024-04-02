@@ -21,9 +21,9 @@ export default function Login({
       password,
     });
     if (error) {
-      return redirect("/login?message=Could not authenticate user");
+      redirect("/login?message=Could not authenticate user");
     }
-    return redirect("/");
+    redirect("/");
   };
 
   return (
@@ -45,14 +45,14 @@ export default function Login({
             name="email"
             label="email"
             variant="outlined"
-            size="small"
+            size="medium"
             required
           />
           <TextField
             name="password"
             label="password"
             variant="outlined"
-            size="small"
+            size="medium"
             required
           />
           <SubmitButton>ログイン</SubmitButton>
