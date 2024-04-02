@@ -12,6 +12,7 @@ export default async function AuthButton() {
   const signOut = async () => {
     "use server";
 
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     const supabase = createClient();
     await supabase.auth.signOut();
     return redirect("/login");
@@ -21,7 +22,10 @@ export default async function AuthButton() {
     <div className="flex items-center gap-4">
       Hey, {user.email}!
       <form action={signOut}>
-        <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
+        <button
+          type="submit"
+          className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
+        >
           Logout
         </button>
       </form>
