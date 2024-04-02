@@ -8,8 +8,8 @@ const numSamples = 120;
 
 const keys = [];
 for (let i = 1; i <= numSamples; i++) {
-  keys.push(`${i}_naturalness_label`);
-  keys.push(`${i}_intelligibility_label`);
+  keys.push(`naturalness_${i}`);
+  keys.push(`intelligibility_${i}`);
 }
 
 const obj: Obj = {};
