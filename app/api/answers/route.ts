@@ -2,10 +2,10 @@
 import { prisma } from "@/app/lib/prisma";
 
 export async function POST(request: Request) {
-  const data = await request.json();
+  const answersData = await request.json();
   try {
     await prisma.answers.createMany({
-      data: data,
+      data: answersData,
       skipDuplicates: true,
     });
     return new Response(JSON.stringify({ success: true }), {
