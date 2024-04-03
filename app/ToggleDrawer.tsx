@@ -27,8 +27,7 @@ export default function ToggleDrawer() {
           ["ホーム", "/"],
           ["年齢・性別", "/info"],
           ["練習試行", "/eval"],
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        ].map((item, index) => (
+        ].map((item) => (
           <ListItem key={item[0]} disablePadding>
             <ListItemButton component="a" href={item[1]}>
               <ListItemText primary={item[0]} />

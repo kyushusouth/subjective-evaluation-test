@@ -4,8 +4,9 @@ import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
 import SubmitButton from "@/app/login/submit-button";
 import Box from "@mui/material/Box";
+import Alert from "@mui/material/Alert";
 
-export default function Login({
+export default async function Login({
   searchParams,
 }: {
   searchParams: { message: string };
@@ -20,8 +21,9 @@ export default function Login({
       email,
       password,
     });
+
     if (error) {
-      redirect("/login?message=Could not authenticate user");
+      redirect("/login?message=Failed to authenticate.");
     }
     redirect("/");
   };
@@ -39,6 +41,7 @@ export default function Login({
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
+            gap: 3,
           }}
         >
           <TextField
@@ -55,13 +58,14 @@ export default function Login({
             size="medium"
             required
           />
-          <SubmitButton>ログイン</SubmitButton>
-
           {searchParams?.message && (
-            <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
-              {searchParams.message}
-            </p>
+            <Alert severity="warning" icon={false} sx={{ textAlign: "center" }}>
+              認証に失敗しました。
+              <br />
+              正しいメールアドレスとパスワードの入力をお願い致します。
+            </Alert>
           )}
+          <SubmitButton>ログイン</SubmitButton>
         </Container>
       </form>
     </Box>

@@ -1,4 +1,5 @@
 import "@/app/globals.css";
+import CssBaseline from "@mui/material/CssBaseline";
 import { Metadata, Viewport } from "next";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
@@ -23,12 +24,11 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="antialiased">
+    <html lang="ja">
+      <CssBaseline />
+      <body>
         <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
-            <div>{children}</div>
-          </ThemeProvider>
+          <ThemeProvider theme={theme}>{children}</ThemeProvider>
         </AppRouterCacheProvider>
       </body>
     </html>
